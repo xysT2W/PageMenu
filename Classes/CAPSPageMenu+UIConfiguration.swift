@@ -14,6 +14,8 @@ extension CAPSPageMenu {
             switch (option) {
             case let .selectionIndicatorHeight(value):
                 configuration.selectionIndicatorHeight = value
+            case let .selectionIndicatorBottomSpace(value):
+                configuration.selectionIndicatorBottomSpace = value
             case let .menuItemSeparatorWidth(value):
                 configuration.menuItemSeparatorWidth = value
             case let .scrollMenuBackgroundColor(value):
@@ -233,14 +235,14 @@ extension CAPSPageMenu {
         var selectionIndicatorFrame : CGRect = CGRect()
         
         if configuration.useMenuLikeSegmentedControl {
-            selectionIndicatorFrame = CGRect(x: 0.0, y: configuration.menuHeight - configuration.selectionIndicatorHeight, width: self.view.frame.width / CGFloat(controllerArray.count), height: configuration.selectionIndicatorHeight)
+            selectionIndicatorFrame = CGRect(x: 0.0, y: configuration.menuHeight - configuration.selectionIndicatorHeight - configuration.selectionIndicatorBottomSpace, width: self.view.frame.width / CGFloat(controllerArray.count), height: configuration.selectionIndicatorHeight)
         } else if configuration.menuItemWidthBasedOnTitleTextWidth {
-            selectionIndicatorFrame = CGRect(x: configuration.menuMargin, y: configuration.menuHeight - configuration.selectionIndicatorHeight, width: menuItemWidths[0], height: configuration.selectionIndicatorHeight)
+            selectionIndicatorFrame = CGRect(x: configuration.menuMargin, y: configuration.menuHeight - configuration.selectionIndicatorHeight - configuration.selectionIndicatorBottomSpace, width: menuItemWidths[0], height: configuration.selectionIndicatorHeight)
         } else {
             if configuration.centerMenuItems  {
-                selectionIndicatorFrame = CGRect(x: startingMenuMargin + configuration.menuMargin, y: configuration.menuHeight - configuration.selectionIndicatorHeight, width: configuration.menuItemWidth, height: configuration.selectionIndicatorHeight)
+                selectionIndicatorFrame = CGRect(x: startingMenuMargin + configuration.menuMargin, y: configuration.menuHeight - configuration.selectionIndicatorHeight - configuration.selectionIndicatorBottomSpace, width: configuration.menuItemWidth, height: configuration.selectionIndicatorHeight)
             } else {
-                selectionIndicatorFrame = CGRect(x: configuration.menuMargin, y: configuration.menuHeight - configuration.selectionIndicatorHeight, width: configuration.menuItemWidth, height: configuration.selectionIndicatorHeight)
+                selectionIndicatorFrame = CGRect(x: configuration.menuMargin, y: configuration.menuHeight - configuration.selectionIndicatorHeight - configuration.selectionIndicatorBottomSpace, width: configuration.menuItemWidth, height: configuration.selectionIndicatorHeight)
             }
         }
         
